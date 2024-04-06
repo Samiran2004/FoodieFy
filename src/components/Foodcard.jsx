@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import Card from "./Cards";
-function Foodcard(){
-    return(
+function Foodcard({ apiData }) {
+    if (!apiData || !apiData.data || apiData.data.length === 0) {
+        return (
+            <MainContainer>
+                <p>No data available</p>
+            </MainContainer>
+        );
+    }
+
+    return (
         <MainContainer>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+            {apiData.data.map((item, index) => (
+                <Card key={index} name={item.name} price={item.price} image={item.image}/>
+            ))}
         </MainContainer>
-    )
+    );
 };
 
 export default Foodcard;

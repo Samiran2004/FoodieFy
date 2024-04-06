@@ -3,14 +3,33 @@ import './App.css'
 import Nav from "./components/Nav"
 import Foodcard from "./components/Foodcard";
 import Footer from "./components/Footer";
+import { useEffect, useState } from "react";
+
+const API_URL = "https://foodiefy-backend.onrender.com/"
 
 function App() {
+
+  const [data, setData] = useState(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(API_URL);
+      if (!response.ok) {
+        throw new Error("Network is not working.")
+      } else {
+        const jsonData = await response.json();
+        setData(jsonData);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <MainContainer>
       <Nav />
-      <Foodcard />
-      <Footer/>
+      <Foodcard apiData={data} />
+      <Footer />
     </MainContainer>
   )
 }

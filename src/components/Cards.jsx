@@ -1,10 +1,11 @@
 import styled from "styled-components";
-function Card(){
-    return(
+function Card({ name , price,image}) {
+
+    return (
         <Cardcontainer>
-            <img src="https://cdn.britannica.com/98/235798-050-3C3BA15D/Hamburger-and-french-fries-paper-box.jpg" alt="Reload" />
-            <h2>Name</h2>
-            <p>Price</p>
+            <img src={image} alt="Reload" />
+            <h2>{name}</h2>
+            <p>{price}</p>
         </Cardcontainer>
     )
 };
