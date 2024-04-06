@@ -1,25 +1,42 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import FilterBtn from "./Filterbtn";
-function Nav() {
+
+function Nav({ filter }) {
+    const handleFilter = (type) => {
+        filter(type);
+    };
+
     return (
         <MainContainer>
             <NavMainContainer>
                 <div className="logo">
-                    <h1><span>F</span>oodie<span>F</span>y</h1>
+                    <h1>
+                        <span>F</span>oodie<span>F</span>y
+                    </h1>
                 </div>
                 <div className="search">
                     <input placeholder="Search Food..." />
                 </div>
             </NavMainContainer>
             <div className="filterBtn">
-                <FilterBtn name={"All"} />
-                <FilterBtn name={"Breakfast"} />
-                <FilterBtn name={"Launch"} />
-                <FilterBtn name={"Dinner"} />
+                <FilterBtn name={"All"} handleClick={() => handleFilter("/")} />
+                <FilterBtn
+                    name={"Breakfast"}
+                    handleClick={() => handleFilter("/breakfast")}
+                />
+                <FilterBtn
+                    name={"Lunch"}
+                    handleClick={() => handleFilter("/lunch")}
+                />
+                <FilterBtn
+                    name={"Dinner"}
+                    handleClick={() => handleFilter("/dinner")}
+                />
             </div>
         </MainContainer>
-    )
+    );
 }
+
 export default Nav;
 const MainContainer = styled.div`
     height: 15vh;

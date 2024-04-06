@@ -1,11 +1,11 @@
 import styled from "styled-components";
-function Card({ name , price,image}) {
+function Card({ name, price, image }) {
 
     return (
         <Cardcontainer>
             <img src={image} alt="Reload" />
             <h2>{name}</h2>
-            <p>{price}</p>
+            <p>${price}</p>
         </Cardcontainer>
     )
 };

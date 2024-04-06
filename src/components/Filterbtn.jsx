@@ -1,14 +1,17 @@
 import styled from "styled-components";
-function FilterBtn({ name }) {
-    return (
-        <div>
-            <Filterbtncont>
-                <p>{name}</p>
-            </Filterbtncont>
-        </div>
-    )
-};
+
+function FilterBtn({ name, handleClick }) {
+  return (
+    <div>
+      <Filterbtncont onClick={handleClick}>
+        <p>{name}</p>
+      </Filterbtncont>
+    </div>
+  );
+}
+
 export default FilterBtn;
+
 
 const Filterbtncont = styled.button`
     background-color: red;

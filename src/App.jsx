@@ -1,37 +1,42 @@
-import styled from "styled-components"
-import './App.css'
-import Nav from "./components/Nav"
+// App.js
+import styled from "styled-components";
+import "./App.css";
+import Nav from "./components/Nav";
 import Foodcard from "./components/Foodcard";
-import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
-const API_URL = "https://foodiefy-backend.onrender.com/"
+const API_URL = "https://foodiefy-backend.onrender.com";
 
 function App() {
-
   const [data, setData] = useState(null);
 
-
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(API_URL);
-      if (!response.ok) {
-        throw new Error("Network is not working.")
-      } else {
-        const jsonData = await response.json();
-        setData(jsonData);
-      }
-    };
-    fetchData();
+    fetchData("/"); // Fetch all data initially
   }, []);
+
+  const fetchData = async (type) => {
+    try {
+      const response = await fetch(`${API_URL}${type}`);
+      if (!response.ok) {
+        throw new Error("Network is not working.");
+      }
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const filterData = (type) => {
+    fetchData(type);
+  };
 
   return (
     <MainContainer>
-      <Nav />
+      <Nav filter={filterData} />
       <Foodcard apiData={data} />
-      <Footer />
     </MainContainer>
-  )
+  );
 }
 
 export default App;

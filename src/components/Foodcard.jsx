@@ -22,8 +22,8 @@ export default Foodcard;
 
 const MainContainer = styled.div`
     /* border: 2px solid white; */
-    height: 100vh;
     margin-top: 10vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
