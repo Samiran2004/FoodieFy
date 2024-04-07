@@ -35,5 +35,12 @@ const Cardcontainer = styled.div`
     p{
         color: white;
         font-size: 20px;
+        background-color: red;
+        width: 80px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
     }
 `

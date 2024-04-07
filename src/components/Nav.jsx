@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterBtn from "./Filterbtn";
 
-function Nav({ filter }) {
+function Nav({ filter, setData, data }) {
     const handleFilter = (type) => {
         filter(type);
     };
@@ -15,7 +15,19 @@ function Nav({ filter }) {
                     </h1>
                 </div>
                 <div className="search">
-                    <input placeholder="Search Food..." />
+                    <input
+                        onChange={(e) => {
+                            const searchValue = e.target.value.toLowerCase();
+                            const searchData = searchValue
+                                ? data?.filter(
+                                      (item) =>
+                                          item.name.toLowerCase().includes(searchValue)
+                                  )
+                                : data;
+                            setData(searchData);
+                        }}
+                        placeholder="Search Food..."
+                    />
                 </div>
             </NavMainContainer>
             <div className="filterBtn">
@@ -38,6 +50,7 @@ function Nav({ filter }) {
 }
 
 export default Nav;
+
 const MainContainer = styled.div`
     height: 15vh;
     .filterBtn {
@@ -61,7 +74,8 @@ const MainContainer = styled.div`
             gap: 20px;
         }
     }
-`
+`;
+
 const NavMainContainer = styled.div`
     background-color: #323334;
     color: aliceblue;
@@ -109,4 +123,4 @@ const NavMainContainer = styled.div`
             width: 60vw;
         }
     }
-`
+`;
